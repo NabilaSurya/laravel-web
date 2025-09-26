@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AsetController;
+
 use App\Http\Controllers\MahasiswaController;
 
 Route::get('/', function () {
@@ -23,3 +25,4 @@ Route::get('/pengguna', function () {
 Route::get('/nim/{param1?}', function ($param1 = '') {
     return 'NIM saya: ' . $param1;
 });
+Route::get('/aset', [AsetController::class, 'index']);

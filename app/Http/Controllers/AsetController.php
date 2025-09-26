@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MahasiswaController extends Controller
+class AsetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -40,6 +40,9 @@ class MahasiswaController extends Controller
         return view('aset', compact('title', 'asets'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         //
@@ -56,13 +59,9 @@ class MahasiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $param1)
+    public function show(string $id)
     {
-        if ($param1 == 'detail') {
-            return view('halaman-mahasiswa-detail');
-        } else if ($param1 == 'pengguna') {
-            return view('halaman-mahasiswa-pengguna');
-        }
+        //
     }
 
     /**
