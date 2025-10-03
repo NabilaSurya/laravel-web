@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AsetController;
 
+use App\Http\Controllers\AuthController;
+
 use App\Http\Controllers\MahasiswaController;
 
 Route::get('/', function () {
@@ -26,3 +28,12 @@ Route::get('/nim/{param1?}', function ($param1 = '') {
     return 'NIM saya: ' . $param1;
 });
 Route::get('/aset', [AsetController::class, 'index']);
+
+Route::get('/guest-login', [AuthController::class, 'index']);
+
+Route::post('/guest-login/process', [AuthController::class, 'login']);
+
+Route::get('/inventaris', function () {
+    return view('inventaris.index');
+});
+

@@ -11,33 +11,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $title = "Daftar Inventaris Aset";
-
-        $asets = [
-            [
-                'kode_aset' => 'AST-001',
-                'nama_aset' => 'Laptop Dell',
-                'kategori' => 'Elektronik',
-                'lokasi' => 'Ruang IT',
-                'kondisi' => 'Baik',
-            ],
-            [
-                'kode_aset' => 'AST-002',
-                'nama_aset' => 'Proyektor Epson',
-                'kategori' => 'Elektronik',
-                'lokasi' => 'Ruang Rapat',
-                'kondisi' => 'Perlu Perbaikan',
-            ],
-            [
-                'kode_aset' => 'AST-003',
-                'nama_aset' => 'Kursi Kerja',
-                'kategori' => 'Furniture',
-                'lokasi' => 'Ruang Staff',
-                'kondisi' => 'Baik',
-            ],
-        ];
-
-        return view('aset', compact('title', 'asets'));
+   
     }
 
     public function create()
