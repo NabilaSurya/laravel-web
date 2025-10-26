@@ -51,6 +51,17 @@
                 </a>
             </li>
 
+            <li class="mt-0.5 w-full">
+                <a href="{{ route('warga.index') }}"
+                    class="py-2.5 flex items-center mx-2 px-4 font-semibold text-sm
+                    rounded-lg text-slate-700 transition-all duration-200 ease-in-out
+                    hover:bg-blue-100 active:bg-blue-500 active:text-white">
+                    <i class="ni ni-circle-08 text-sm mr-2 text-blue-500"></i>
+                    Warga
+                </a>
+            </li>
+
+
         </ul>
     </div>
 </aside>
