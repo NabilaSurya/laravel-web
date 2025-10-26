@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\KategoriAsetController;
 use App\Http\Controllers\MahasiswaController;
-
+use App\Http\Controllers\KategoriAsetController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,9 +27,9 @@ Route::get('/nim/{param1?}', function ($param1 = '') {
     return 'NIM saya: ' . $param1;
 });
 
-Route::get('/guest-login', [AuthController::class, 'index']);
+Route::get('/login', [AuthController::class, 'index'])->name('login');
 
-Route::post('/guest-login/process', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/inventaris', function () {
     return view('inventaris.index');
@@ -37,3 +37,5 @@ Route::get('/inventaris', function () {
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('kategori_aset', KategoriAsetController::class);
+
+Route::resource('user', UserController::class);

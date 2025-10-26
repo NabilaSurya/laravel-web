@@ -3,31 +3,54 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AuthController extends Controller
 {
-      public function index()
+    /**
+     * Menampilkan Form Login
+     */
+    public function index()
     {
-        return view('auth.guest-login');
+        return view('guest.login');
     }
 
+    /**
+     * Memproses data login (Otentikasi Database)
+     */
     public function login(Request $request)
     {
-        $request->validate([
-            'username' => 'required',
-            'password' => [
-                'required',
-                'min:3',
-                'regex:/[A-Z]/' //Semua Huruf Kapita;
-            ]
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
         ], [
-            'username.required' => 'Username wajib diisi.',
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
             'password.required' => 'Password wajib diisi.',
-            'password.min' => 'Password harus minimal 3 karakter dan mengandung huruf kapital.',
-            'password.regex' => 'Password harus minimal 3 karakter dan mengandung huruf kapital.',
         ]);
 
-        return redirect('/inventaris')->with('success', 'Login berhasil, selamat datang ' . $request->username . '!');
+        if (Auth::attempt($credentials)) {
+
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('kategori_aset.index'))->with('success', 'Login berhasil!');
+        }
+
+        return back()->withInput()->withErrors([
+            'email' => 'Email atau Password yang Anda masukkan salah.',
+        ]);
     }
 
+    /**
+     * Logout user.
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
+    }
 }
