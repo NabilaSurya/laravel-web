@@ -8,62 +8,19 @@
     <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" />
     <title>Daftar Kategori Aset | Dashboard Guest</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <link href="{{ asset('assets/css/argon-dashboard-tailwind.css?v=1.0.1') }}" rel="stylesheet" />
+    <!--Start CSS-->
+    @include('layouts.guest.css')
+    <!--end-->
 </head>
 
 <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
 
-    <!-- HEADER BIRU -->
-    <div class="absolute w-full bg-blue-500 dark:hidden min-h-75"></div>
-
+    <!-- Start Header -->
+    @include('layouts.guest.header')
+    <!-- end Header -->
     <!-- SIDEBAR -->
-    <aside
-        class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto transition-transform duration-200 -translate-x-full bg-white shadow-xl max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0"
-        aria-expanded="false">
-        <div class="h-19">
-            <a class="block px-8 py-6 text-sm whitespace-nowrap text-slate-700" href="javascript:;">
-                <img src="{{ asset('assets/img/logo-ct-dark.png') }}"
-                    class="inline h-full max-w-full transition-all duration-200 dark:hidden ease-nav-brand max-h-8"
-                    alt="main_logo" />
-                <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">Dashboard Guest</span>
-            </a>
-        </div>
-        <hr class="h-px mt-0 bg-gradient-to-r from-transparent via-black/40 to-transparent" />
-        <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
-            <ul class="flex flex-col pl-0 mb-0">
-
-                <li class="mt-0.5 w-full">
-                    <a href="javascript:;"
-                        class="py-2.7 flex items-center mx-2 px-4 font-semibold text-slate-700 text-sm rounded-lg transition-colors">
-                        <i class="ni ni-tv-2 text-blue-500 text-sm mr-2"></i>
-                        Dashboard
-                    </a>
-                </li>
-
-                <li class="mt-0.5 w-full">
-                    <a href="{{ route('kategori_aset.create') }}"
-                        class="py-2.7 flex items-center mx-2 px-4 font-semibold text-slate-700 text-sm rounded-lg transition-colors">
-                        <i class="ni ni-collection text-blue-500 text-sm mr-2"></i>
-                        Input Kategori Aset
-                    </a>
-                </li>
-
-                <li class="mt-0.5 w-full">
-                    <a href="javascript:;"
-                        class="py-2.7 flex items-center mx-2 px-4 font-semibold text-white text-sm rounded-lg bg-gradient-to-tl from-blue-500 to-violet-500 transition-colors">
-                        <i class="ni ni-calendar-grid-58 text-white text-sm mr-2"></i>
-                        Tables
-                    </a>
-                </li>
-
-            </ul>
-        </div>
-    </aside>
+    @include('layouts.guest.sidebar')
+    <!-- end SIDEBAR -->
 
     <!-- MAIN CONTENT -->
     <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 z-10 rounded-xl">
@@ -175,25 +132,14 @@
             </div>
 
             <!-- FOOTER -->
-            <footer class="pt-4">
-                <div class="w-full px-6 mx-auto">
-                    <div class="flex flex-wrap items-center -mx-3 justify-between">
-                        <div class="w-full max-w-full px-3 text-center text-sm text-slate-500">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>,
-                            made with <i class="fa fa-heart text-red-500"></i> by Your Company.
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            @include('layouts.guest.footer')
+            <!-- end FOOTER -->
 
         </div>
     </main>
-
-    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}" async></script>
-    <script src="{{ asset('assets/js/argon-dashboard-tailwind.js?v=1.0.1') }}" async></script>
+    <!-- FOOTER -->
+    @include('layouts.guest.js')
+    <!-- end FOOTER -->
 </body>
 
 </html>

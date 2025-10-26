@@ -23,9 +23,8 @@
         @include('layouts.guest.header')
         <!--END HEADER -->
         <!-- MAIN CONTENT -->
-
+        @yield('content')
         <!--END MAINCONTENT -->
-        @yield('content');
         <!-- START FOOTER -->
         @include('layouts.guest.footer')
         <!-- END FOOTER -->
