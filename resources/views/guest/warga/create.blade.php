@@ -12,7 +12,7 @@
                         <div class="flex justify-between items-center mb-4">
                             <h5 class="font-bold dark:text-white">Form Input Data Warga</h5>
                             <a href="{{ route('warga.index') }}"
-                                class="text-sm font-semibold transition-all ease-nav-brand text-blue-500 hover:text-blue-700 dark:text-white dark:hover:text-gray-300">
+                                class="text-sm font-semibold transition-all ease-nav-brand text-blue-500 hover:text-blue-700 dark:hover:text-gray-300">
                                 <i class="fa fa-list-alt sm:mr-1"></i>
                                 <span class="sm:inline">Daftar Warga</span>
                             </a>
@@ -23,9 +23,9 @@
 
                             <div class="mb-4">
                                 <label for="nik"
-                                    class="block mb-2 text-sm font-medium text-slate-700 dark:text-white">NIK</label>
+                                    class="block mb-2 text-sm font-medium text-slate-70">NIK</label>
                                 <input type="text" name="nik" id="nik"
-                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white py-2 px-3 text-gray-700 placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
+                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block rounded-lg border border-solid border-gray-300 dark:bg-slate-850 bg-white py-2 px-3 text-gray-700 placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
                                     placeholder="Masukkan NIK warga" value="{{ old('nik') }}" required>
                                 @error('nik')
                                     <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
@@ -34,10 +34,10 @@
 
                             <div class="mb-4">
                                 <label for="nama"
-                                    class="block mb-2 text-sm font-medium text-slate-700 dark:text-white">Nama
+                                    class="block mb-2 text-sm font-medium text-slate-700">Nama
                                     Lengkap</label>
                                 <input type="text" name="nama" id="nama"
-                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white py-2 px-3 text-gray-700 placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
+                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block rounded-lg border border-solid border-gray-300 dark:bg-slate-850 bg-white py-2 px-3 text-gray-700 placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
                                     placeholder="Masukkan nama lengkap" value="{{ old('nama') }}" required>
                                 @error('nama')
                                     <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
@@ -46,10 +46,10 @@
 
                             <div class="mb-4">
                                 <label for="jenis_kelamin"
-                                    class="block mb-2 text-sm font-medium text-slate-700 dark:text-white">Jenis
+                                    class="block mb-2 text-sm font-medium text-slate-700">Jenis
                                     Kelamin</label>
                                 <select name="jenis_kelamin" id="jenis_kelamin"
-                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white py-2 px-3 text-gray-700 placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
+                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block rounded-lg border border-solid border-gray-300 dark:bg-slate-850 bg-white py-2 px-3 text-gray-700 placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
                                     required>
                                     <option value="">-- Pilih Jenis Kelamin --</option>
                                     <option value="Laki-laki" {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>
@@ -64,10 +64,10 @@
 
                             <div class="mb-4">
                                 <label for="alamat"
-                                    class="block mb-2 text-sm font-medium text-slate-700 dark:text-white">Alamat
+                                    class="block mb-2 text-sm font-medium text-slate-700">Alamat
                                     Lengkap</label>
                                 <textarea name="alamat" id="alamat" rows="3"
-                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white py-2 px-3 text-gray-700 placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
+                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block rounded-lg border border-solid border-gray-300 dark:bg-slate-850 bg-white py-2 px-3 text-gray-700 placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
                                     placeholder="Masukkan alamat lengkap">{{ old('alamat') }}</textarea>
                                 @error('alamat')
                                     <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
@@ -76,10 +76,10 @@
 
                             <div class="mb-6">
                                 <label for="no_hp"
-                                    class="block mb-2 text-sm font-medium text-slate-700 dark:text-white">Nomor
+                                    class="block mb-2 text-sm font-medium text-slate-700">Nomor
                                     HP</label>
                                 <input type="text" name="no_hp" id="no_hp"
-                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white py-2 px-3 text-gray-700 placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
+                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block rounded-lg border border-solid border-gray-300 dark:bg-slate-850 bg-white py-2 px-3 text-gray-700 placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
                                     placeholder="Contoh: 081234567890" value="{{ old('no_hp') }}">
                                 @error('no_hp')
                                     <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
