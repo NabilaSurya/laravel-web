@@ -33,7 +33,7 @@ class AuthController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->intended(route('dashboard'))->with('success', 'Login berhasil!');
+            return redirect()->intended(route('kategori_aset.index'))->with('success', 'Login berhasil!');
         }
 
         return back()->withInput()->withErrors([
