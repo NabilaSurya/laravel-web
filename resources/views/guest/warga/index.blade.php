@@ -1,7 +1,8 @@
 @extends('layouts.guest.app')
 
 @section('content')
-    <div class="w-full px-6 py-6 mx-auto">
+    {{-- PERUBAHAN: Menambahkan pt-24 (Padding Top) untuk mengatasi header fixed --}}
+    <div class="w-full px-6 py-6 mx-auto pt-24">
 
         {{-- Notifikasi Sukses --}}
         @if (session('success'))

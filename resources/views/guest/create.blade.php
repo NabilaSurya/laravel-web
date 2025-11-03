@@ -24,10 +24,10 @@
 
                             <div class="mb-4">
                                 <label for="nama"
-                                    class="block mb-2 text-sm font-medium text-slate-700 dark:text-white">Nama
+                                    class="block mb-2 text-sm font-medium text-slate-700">Nama
                                     Kategori</label>
                                 <input type="text" name="nama" id="nama"
-                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 px-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
+                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 bg-white bg-clip-padding py-2 px-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
                                     placeholder="Contoh: Peralatan Kantor" value="{{ old('nama') }}" required>
                                 @error('nama')
                                     <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
@@ -36,10 +36,10 @@
 
                             <div class="mb-4">
                                 <label for="kode"
-                                    class="block mb-2 text-sm font-medium text-slate-700 dark:text-white">Kode
+                                    class="block mb-2 text-sm font-medium text-slate-700">Kode
                                     (Unique)</label>
                                 <input type="text" name="kode" id="kode"
-                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 px-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
+                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 bg-white bg-clip-padding py-2 px-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
                                     placeholder="Contoh: PK" value="{{ old('kode') }}" required>
                                 @error('kode')
                                     <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
@@ -48,10 +48,10 @@
 
                             <div class="mb-6">
                                 <label for="deskripsi"
-                                    class="block mb-2 text-sm font-medium text-slate-700 dark:text-white">Deskripsi
+                                    class="block mb-2 text-sm font-medium text-slate-700">Deskripsi
                                     (Opsional)</label>
                                 <textarea name="deskripsi" id="deskripsi" rows="3"
-                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 px-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
+                                    class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 bg-white bg-clip-padding py-2 px-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
                                     placeholder="Penjelasan singkat tentang kategori aset...">{{ old('deskripsi') }}</textarea>
                                 @error('deskripsi')
                                     <p class="text-xs text-red-500 mt-1">{{ $message }}</p>

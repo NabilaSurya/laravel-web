@@ -13,7 +13,7 @@ class WargaController extends Controller
     public function index()
     {
         $wargas = Warga::latest()->get();
-        return view('warga.index', compact('wargas'));
+        return view('guest/warga.index', compact('wargas'));
     }
 
     /**

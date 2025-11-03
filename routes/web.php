@@ -3,13 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TableController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\KategoriAsetController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login.index');
 });
 Route::get('/profile', function () {
     return 'Ini adalah halaman pofil pengguna.';
@@ -42,3 +43,9 @@ Route::resource('kategori_aset', KategoriAsetController::class);
 Route::resource('user', UserController::class);
 
 Route::resource('warga', WargaController::class);
+
+Route::get('table', [TableController::class, 'index'])->name('table');
+
+Route::get('/about', function () {
+    return view('guest/about.about');
+})->name('about');

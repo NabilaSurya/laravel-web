@@ -13,9 +13,8 @@ class AuthController extends Controller
      */
     public function index()
     {
-        return view('guest.login');
+        return view('guest/login.login');
     }
-
     /**
      * Memproses data login (Otentikasi Database)
      */

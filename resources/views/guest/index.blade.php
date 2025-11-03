@@ -1,142 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}" />
-    <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" />
-    <title>Daftar Kategori Aset | Dashboard Guest</title>
+    <title>Dashboard Publik | Aset Perusahaan</title>
 
+    {{-- Menggunakan include untuk memuat CSS, Font, dan style global --}}
     @include('layouts.guest.css')
-</head>
+    </head>
 
-<body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
+<body class="font-inter bg-indigo-50 text-slate-700">
 
+    {{-- Memuat header fixed/navbar --}}
     @include('layouts.guest.header')
-    @include('layouts.guest.sidebar')
 
-    <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
-        <!-- Navbar -->
-        <nav class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start"
-            navbar-main navbar-scroll="false">
-            <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
-                <nav>
-                    <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
-                        <li class="text-sm leading-normal">
-                            <a class="text-white opacity-50" href="javascript:;">Pages</a>
-                        </li>
-                        <li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
-                            aria-current="page">Kategori Aset</li>
-                    </ol>
-                    <h6 class="mb-0 font-bold text-white capitalize">Daftar Kategori Aset</h6>
-                </nav>
+    <section class="relative h-[70vh] flex items-center justify-center text-center bg-cover bg-center hero-bg">
+        <div class="px-6">
+            <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">Dashboard Publik Aset</h2>
+            <p class="text-lg text-gray-200 mb-6 max-w-2xl mx-auto">
+                Lihat dan kelola kategori aset perusahaan dengan tampilan modern dan interaktif.
+            </p>
+            {{-- PERBAIKAN: Mengubah tautan ke ID tabel di halaman ini untuk mengatasi error rute sementara --}}
+            <li class="mt-0.5 w-full list-none">
+                {{-- Memeriksa apakah ini adalah rute aktif untuk memberi warna solid --}}
+                @php
+                    $isActive = request()->routeIs('kategori_aset.index');
+                @endphp
 
-                <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
-                    <div class="flex items-center md:ml-auto md:pr-4">
-                        <!-- Space for search or other elements if needed -->
+                <a href="#tabelAset"
+                    class="py-2.5 flex items-center justify-center w-64 mx-auto px-4 font-semibold text-sm rounded-lg transition-all duration-200 ease-in-out
+    {{ $isActive ? 'bg-blue-500 text-white shadow-md' : 'text-white hover:bg-blue-600/90 focus:bg-blue-600' }}">
+
+                    {{-- Menggunakan ikon yang berwarna putih --}}
+                    <i class="fa fa-list-alt text-sm mr-2 text-white"></i>
+
+                    Lihat Kategori Aset
+                </a>
+            </li>
+        </div>
+    </section>
+
+    <main>
+        <section class="max-w-6xl mx-auto -mt-10 px-6 z-10 relative">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-2xl transition hover:shadow-3xl hover:scale-[1.01] duration-300 border-b-4 border-blue-500">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-sm font-medium text-gray-500 uppercase">Total Kategori</h4>
+                        <i class="fa fa-layer-group text-2xl text-blue-500"></i>
                     </div>
+                    {{-- Ganti nilai statis 15 dengan hitungan dari database --}}
+                    <p class="text-4xl font-bold text-slate-800 mt-2">{{ count($kategoriAsets) }}</p>
+                    <p class="text-xs text-gray-400 mt-1">Total data</p>
                 </div>
-            </div>
-        </nav>
-        <!-- End Navbar -->
 
-        <div class="w-full px-6 py-6 mx-auto">
-            <!-- Button Tambah Data -->
-            <div class="flex flex-wrap -mx-3 mb-6">
-                <div class="w-full max-w-full px-3">
+                <div
+                    class="bg-white p-6 rounded-xl shadow-2xl transition hover:shadow-3xl hover:scale-[1.01] duration-300 border-b-4 border-green-500">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-sm font-medium text-gray-500 uppercase">Total Aset (Statik)</h4>
+                        <i class="fa fa-boxes text-2xl text-green-500"></i>
+                    </div>
+                    <p class="text-4xl font-bold text-slate-800 mt-2">5,200</p>
+                    <p class="text-xs text-gray-400 mt-1">Peningkatan 12% bulan ini</p>
+                </div>
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-2xl transition hover:shadow-3xl hover:scale-[1.01] duration-300 border-b-4 border-amber-500">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-sm font-medium text-gray-500 uppercase">Aset Baru (Statik)</h4>
+                        <i class="fa fa-truck-loading text-2xl text-amber-500"></i>
+                    </div>
+                    <p class="text-4xl font-bold text-slate-800 mt-2">87</p>
+                    <p class="text-xs text-gray-400 mt-1">Pengadaan: Meja dan Kursi</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="tabelAset" class="max-w-6xl mx-auto mt-16 px-6">
+            <div class="bg-white shadow-xl rounded-2xl p-6">
+                <div class="flex justify-between items-center mb-6 border-b pb-4">
+                    <h3 class="text-xl font-semibold text-slate-800 flex items-center gap-2">
+                        <i class="fa fa-tags text-blue-500"></i>
+                        Daftar Kategori Aset
+                    </h3>
+                    {{-- TOMBOL TAMBAH DATA KECIL --}}
                     <a href="{{ route('kategori_aset.create') }}"
-                        class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">
-                        <i class="fas fa-plus mr-2"></i>Tambah Kategori Aset
+                        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md">
+                        <i class="fa fa-plus mr-1"></i> Tambah Kategori
                     </a>
                 </div>
-            </div>
 
-            <!-- Cards Row -->
-            <div class="flex flex-wrap -mx-3">
-                @forelse ($kategoriAsets as $kategori)
-                    <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:w-1/3">
-                        <div
-                            class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-                            <div class="flex-auto p-4">
-                                <div class="flex flex-row -mx-3">
-                                    <div class="flex-none w-2/3 max-w-full px-3">
-                                        <div>
-                                            <p
-                                                class="mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60">
-                                                {{ $kategori->nama }}
-                                            </p>
-                                            <h5 class="mb-2 font-bold dark:text-white">
-                                                {{ $kategori->kode }}
-                                            </h5>
-                                            <p class="mb-0 dark:text-white dark:opacity-60">
-                                                <span class="text-xs font-bold leading-normal text-emerald-500">ID:
-                                                    {{ $kategori->kategori_id }}</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="px-3 text-right basis-1/3">
-                                        <div
-                                            class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-blue-500 to-violet-500">
-                                            <i class="fas fa-folder-open text-lg relative top-3.5 text-white"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                {{-- **PERUBAHAN KRUSIAL:** Menggunakan Blade Loop untuk menampilkan data DB --}}
+                <div id="cardGridKategori" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                                <div class="mt-4 mb-4">
-                                    <p class="text-sm leading-normal text-slate-500 dark:text-white dark:opacity-60">
-                                        {{ Str::limit($kategori->deskripsi, 80, '...') }}
-                                    </p>
-                                </div>
+                    @forelse ($kategoriAsets as $kategori)
+                        <div class="category-card bg-white p-4 rounded-xl shadow-md border-t-4 border-blue-600 transition hover:shadow-lg relative hover:scale-[1.02] duration-200"
+                            {{-- Simulasi link ke detail aset --}}
+                            onclick="console.log('Navigasi ke detail aset untuk {{ $kategori->nama }}'); window.location.href = '#';">
 
-                                <div class="flex justify-end items-center pt-3 border-t border-slate-100">
-                                    <a href="{{ route('kategori_aset.edit', $kategori->kategori_id) }}"
-                                        class="inline-block px-4 py-2 mr-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer leading-normal text-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 hover:-translate-y-px active:opacity-85 bg-gradient-to-tl from-slate-600 to-slate-300">
-                                        <i class="fas fa-pencil-alt text-xs mr-1"></i> Edit
-                                    </a>
-                                    <form action="{{ route('kategori_aset.destroy', $kategori->kategori_id) }}"
-                                        method="POST" class="inline-block"
-                                        onsubmit="return confirm('Yakin hapus kategori {{ $kategori->nama }}?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="inline-block px-4 py-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer leading-normal text-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 hover:-translate-y-px active:opacity-85 bg-gradient-to-tl from-red-600 to-orange-400">
-                                            <i class="fas fa-trash text-xs mr-1"></i> Hapus
-                                        </button>
-                                    </form>
-                                </div>
+                            <span class="absolute top-2 right-4 text-xs font-semibold text-gray-400">#ID:
+                                {{ $kategori->kategori_id }}</span>
+                            <h4 class="text-lg font-bold text-slate-800">{{ $kategori->nama }}</h4>
+                            <p class="text-sm text-gray-600 mt-1">Kode: **{{ $kategori->kode }}**</p>
+
+                            @if ($kategori->deskripsi)
+                                <p class="text-xs text-gray-500 mt-2 italic">{{ Str::limit($kategori->deskripsi, 60) }}
+                                </p>
+                            @else
+                                <p class="text-xs text-gray-400 mt-2 italic">Tidak ada deskripsi.</p>
+                            @endif
+
+                            <div class="mt-4 flex justify-end gap-3 text-xs">
+                                {{-- Tombol Edit mengarah ke route edit --}}
+                                <a href="{{ route('kategori_aset.edit', $kategori->kategori_id) }}"
+                                    class="text-blue-500 hover:text-blue-700 font-medium transition">Edit</a>
+
+                                {{-- Tombol Hapus mengarah ke route destroy --}}
+                                <form action="{{ route('kategori_aset.destroy', $kategori->kategori_id) }}"
+                                    method="POST" class="inline-block"
+                                    onsubmit="return confirm('Yakin hapus kategori {{ $kategori->nama }}? Aksi ini tidak dapat dibatalkan.')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="text-red-500 hover:text-red-700 font-medium transition">Hapus</button>
+                                </form>
                             </div>
                         </div>
-                    </div>
-                @empty
-                    <div class="w-full max-w-full px-3">
-                        <div
-                            class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-                            <div class="flex-auto p-6 text-center">
-                                <div
-                                    class="inline-block w-16 h-16 text-center rounded-circle bg-gradient-to-tl from-slate-600 to-slate-300 mb-4">
-                                    <i class="fas fa-folder-open text-3xl relative top-4 text-white"></i>
-                                </div>
-                                <h5 class="mb-2 font-bold text-slate-700 dark:text-white">Belum Ada Data Kategori Aset
-                                </h5>
-                                <p class="mb-4 text-sm text-slate-500 dark:text-white dark:opacity-60">
-                                    Silakan klik tombol "Tambah Kategori Aset" untuk menambahkan data baru.
-                                </p>
+                    @empty
+                        {{-- Kartu jika $kategoriAsets kosong --}}
+                        <div class="w-full sm:col-span-2 lg:col-span-3">
+                            <div
+                                class="bg-gray-100 p-8 rounded-xl shadow-inner text-center border-l-4 border-amber-500">
+                                <i class="fa fa-exclamation-triangle text-amber-500 text-3xl mb-3"></i>
+                                <h4 class="text-lg font-semibold text-slate-800">Data Kategori Aset Kosong</h4>
+                                <p class="text-sm text-gray-600 mt-1">Silakan tambahkan data kategori aset baru.</p>
                                 <a href="{{ route('kategori_aset.create') }}"
-                                    class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer leading-normal text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 hover:-translate-y-px active:opacity-85 bg-gradient-to-tl from-blue-500 to-violet-500">
-                                    <i class="fas fa-plus mr-2"></i>Tambah Data Pertama
+                                    class="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition text-xs font-semibold">
+                                    Tambah Kategori Pertama
                                 </a>
                             </div>
                         </div>
-                    </div>
-                @endforelse
-            </div>
+                    @endforelse
 
-            @include('layouts.guest.footer')
-        </div>
+                </div>
+            </div>
+        </section>
     </main>
 
+    {{-- Memuat footer dan FAB WhatsApp --}}
+    @include('layouts.guest.footer')
+
+    {{-- Memuat script/element tambahan (misalnya, FAB WhatsApp) --}}
     @include('layouts.guest.js')
+
 </body>
 
 </html>

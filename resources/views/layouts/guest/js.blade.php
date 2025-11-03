@@ -1,2 +1,4 @@
-<script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}" async></script>
-<script src="{{ asset('assets/js/argon-dashboard-tailwind.js?v=1.0.1') }}" async></script>
+<a href="https://wa.me/6282184244159text=Halo%2C%20saya%20punya%20pertanyaan%20mengenai%20aplikasi%20Aset%20%26%20Warga."
+    target="_blank" class="fab-whatsapp">
+    <i class="fab fa-whatsapp"></i>
+</a>
