@@ -37,16 +37,16 @@
                                 <thead class="bg-gray-100 dark:bg-slate-700 rounded-lg">
                                     <tr>
                                         <th
-                                            class="py-3 px-4 text-sm font-semibold text-left text-slate-700 dark:text-white uppercase rounded-tl-lg">
+                                            class="py-3 px-4 text-sm font-semibold text-left text-slate-700 uppercase rounded-tl-lg">
                                             No</th>
                                         <th
-                                            class="py-3 px-4 text-sm font-semibold text-left text-slate-700 dark:text-white uppercase">
+                                            class="py-3 px-4 text-sm font-semibold text-left text-slate-700 uppercase">
                                             Nama</th>
                                         <th
-                                            class="py-3 px-4 text-sm font-semibold text-left text-slate-700 dark:text-white uppercase">
+                                            class="py-3 px-4 text-sm font-semibold text-left text-slate-700 uppercase">
                                             Email</th>
                                         <th
-                                            class="py-3 px-4 text-sm font-semibold text-center text-slate-700 dark:text-white uppercase rounded-tr-lg">
+                                            class="py-3 px-4 text-sm font-semibold text-center text-slate-700 uppercase rounded-tr-lg">
                                             Aksi</th>
                                     </tr>
                                 </thead>

@@ -52,7 +52,7 @@
                         <i class="fa fa-layer-group text-2xl text-blue-500"></i>
                     </div>
                     {{-- Ganti nilai statis 15 dengan hitungan dari database --}}
-                    <p class="text-4xl font-bold text-slate-800 mt-2">{{ count($kategoriAsets) }}</p>
+                    <p class="text-4xl font-bold text-slate-800 mt-2">{{ count($kategoriAsets ?? []) }}</p>
                     <p class="text-xs text-gray-400 mt-1">Total data</p>
                 </div>
 
@@ -96,7 +96,7 @@
                 {{-- **PERUBAHAN KRUSIAL:** Menggunakan Blade Loop untuk menampilkan data DB --}}
                 <div id="cardGridKategori" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                    @forelse ($kategoriAsets as $kategori)
+                    @forelse ($kategoriAsets ?? [] as $kategori)
                         <div class="category-card bg-white p-4 rounded-xl shadow-md border-t-4 border-blue-600 transition hover:shadow-lg relative hover:scale-[1.02] duration-200"
                             {{-- Simulasi link ke detail aset --}}
                             onclick="console.log('Navigasi ke detail aset untuk {{ $kategori->nama }}'); window.location.href = '#';">

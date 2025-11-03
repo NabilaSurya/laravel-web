@@ -16,6 +16,8 @@
 
             <!-- Link ke halaman Warga -->
             <a href="{{ route('warga.index') }}" class="text-blue-600 hover:text-blue-800 transition duration-300">Warga</a>
+
+            <a href="{{ route('user.index') }}" class="text-blue-600 hover:text-blue-800 transition duration-300">User</a>
         </div>
     </div>
 </header>
