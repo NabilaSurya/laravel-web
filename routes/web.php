@@ -10,7 +10,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\KategoriAsetController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest.index');
 });
 Route::get('/profile', function () {
     return 'Ini adalah halaman pofil pengguna.';
