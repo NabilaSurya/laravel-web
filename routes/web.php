@@ -9,8 +9,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\KategoriAsetController;
 
-Route::get('/dashboard', function () {
-    return view('guest.index');
+Route::get('/', function () {
+    return view('welcome');
 });
 Route::get('/profile', function () {
     return 'Ini adalah halaman pofil pengguna.';
@@ -29,7 +29,7 @@ Route::get('/nim/{param1?}', function ($param1 = '') {
     return 'NIM saya: ' . $param1;
 });
 
-Route::get('/', [AuthController::class, 'index'])->name('login.index');
+Route::get('/login', [AuthController::class, 'index'])->name('login.index');
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -43,8 +43,6 @@ Route::resource('kategori_aset', KategoriAsetController::class);
 Route::resource('user', UserController::class);
 
 Route::resource('warga', WargaController::class);
-
-Route::get('table', [TableController::class, 'index'])->name('table');
 
 Route::get('/about', function () {
     return view('guest/about.about');
