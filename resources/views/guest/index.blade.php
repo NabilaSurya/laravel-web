@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard Publik | Aset Perusahaan</title>
+    <title>Dashboard Publik | Aset Desa</title>
 
     {{-- Menggunakan include untuk memuat CSS, Font, dan style global --}}
     @include('layouts.guest.css')
-    </head>
+</head>
 
 <body class="font-inter bg-indigo-50 text-slate-700">
 
