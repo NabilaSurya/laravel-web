@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\KategoriAset;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AsetController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TableController;
@@ -8,7 +10,6 @@ use App\Http\Controllers\WargaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\KategoriAsetController;
-use App\Models\KategoriAset;
 
 Route::get('/', function () {
     return view('guest.index');
@@ -50,3 +51,6 @@ Route::get('/about', function () {
 })->name('about');
 
 Route::get('/', [KategoriAsetController::class, 'index'])->name('guest.index');
+
+Route::resource('aset', AsetController::class);
+Route::get('/aset', [AsetController::class, 'index'])->name('aset.index');

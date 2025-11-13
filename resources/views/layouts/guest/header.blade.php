@@ -21,7 +21,10 @@
                 class="text-blue-600 hover:text-blue-800 transition duration-300 flex items-center gap-1">
                 <i class="fas fa-list-alt"></i> Kategori Aset
             </a>
-
+            <a href="{{ route('aset.index') }}"
+                class="text-blue-600 hover:text-blue-800 transition duration-300 flex items-center gap-1">
+                <i class="fas fa-warehouse"></i> Aset
+            </a>
             <a href="{{ route('warga.index') }}"
                 class="text-blue-600 hover:text-blue-800 transition duration-300 flex items-center gap-1">
                 <i class="fas fa-users"></i> Warga
