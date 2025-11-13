@@ -8,6 +8,7 @@ use App\Http\Controllers\WargaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\KategoriAsetController;
+use App\Models\KategoriAset;
 
 Route::get('/', function () {
     return view('guest.index');
@@ -47,3 +48,5 @@ Route::resource('warga', WargaController::class);
 Route::get('/about', function () {
     return view('guest/about.about');
 })->name('about');
+
+Route::get('/', [KategoriAsetController::class, 'index'])->name('guest.index');
