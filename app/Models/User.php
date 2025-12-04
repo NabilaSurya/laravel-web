@@ -45,4 +45,20 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function scopeSearch($query, $term)
+    {
+        if ($term) {
+            $query->where(function ($q) use ($term) {
+                $q->where('name', 'LIKE', "%$term%")
+                    ->orWhere('email', 'LIKE', "%$term%");
+            });
+        }
+    }
+
+    public function scopeFilter($query, $column, $value)
+    {
+        if ($value) {
+            $query->where($column, $value);
+        }
+    }
 }

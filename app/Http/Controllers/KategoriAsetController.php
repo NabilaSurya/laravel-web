@@ -11,11 +11,30 @@ class KategoriAsetController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $kategoriAsets = KategoriAset::all();
+        $filterableColumns = ['kode'];
 
-        return view('guest.index', compact('kategoriAsets'));
+        $query = KategoriAset::query();
+
+        foreach ($filterableColumns as $column) {
+            if ($request->filled($column)) {
+                $query->where($column, 'like', '%' . $request->get($column) . '%');
+            }
+        }
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('nama', 'like', "%{$search}%")
+                    ->orWhere('kode', 'like', "%{$search}%");
+            });
+        }
+
+        $kategoriAsets = $query->paginate(10)->withQueryString();
+
+        $allKode = KategoriAset::pluck('kode')->unique();
+
+        return view('guest.index', compact('kategoriAsets', 'allKode'));
     }
 
     /**

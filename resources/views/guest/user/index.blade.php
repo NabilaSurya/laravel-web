@@ -26,6 +26,60 @@
                         <i class="fas fa-plus-circle mr-2"></i> Tambah User Baru
                     </a>
                 </div>
+                {{-- SEARCH & FILTER FORM DITAMBAHKAN DI SINI --}}
+                <form method="GET" action="{{ route('user.index') }}"
+                    class="mb-6 p-4 bg-white dark:bg-slate-850 shadow-md rounded-lg border border-gray-100 dark:border-slate-700">
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+
+                        {{-- SEARCH --}}
+                        <div>
+                            <label for="search"
+                                class="block mb-1 text-xs font-semibold text-gray-600 dark:text-gray-300">Cari User</label>
+                            <input type="text" id="search" name="search"
+                                class="form-input w-full rounded-lg border-gray-300 dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+                                value="{{ request('search') }}" placeholder="Cari nama atau email...">
+                        </div>
+
+                        {{-- FILTER EMAIL (Diubah menjadi Role jika tersedia, atau biarkan email) --}}
+                        {{-- Saya asumsikan Anda ingin filter role, karena email biasanya unik. Jika memang filter email, kode ini sudah benar --}}
+                        <div>
+                            <label for="email_filter"
+                                class="block mb-1 text-xs font-semibold text-gray-600 dark:text-gray-300">Filter
+                                Email</label>
+                            <select id="email_filter" name="email"
+                                class="form-select w-full rounded-lg border-gray-300 dark:bg-slate-700 dark:border-slate-600 dark:text-white">
+                                <option value="">Semua Email</option>
+
+                                @foreach ($allEmails as $email)
+                                    <option value="{{ $email }}" {{ request('email') == $email ? 'selected' : '' }}>
+                                        {{ $email }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        {{-- TOMBOL FILTER --}}
+                        <div class="flex items-end">
+                            <button type="submit"
+                                class="w-full py-2 text-center bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold text-white transition duration-150 ease-in-out">
+                                <i class="fas fa-search mr-1"></i> Cari
+                            </button>
+                        </div>
+
+                        {{-- RESET --}}
+                        <div class="flex items-end">
+                            <a href="{{ route('user.index') }}"
+                                class="w-full py-2 text-center bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-lg font-semibold text-gray-600 dark:text-gray-300 transition duration-150 ease-in-out">
+                                <i class="fas fa-redo-alt mr-1"></i> Reset
+                            </a>
+                        </div>
+                    </div>
+                </form>
+                {{-- AKHIR SEARCH & FILTER FORM --}}
+                <div class="mt-6">
+                    {{ $users->links() }}
+                </div>
+                <div class="mt-10"></div>
 
                 {{-- Daftar User --}}
                 <div class="flex flex-wrap -mx-3">

@@ -8,10 +8,21 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
-        return view('guest/user.index', compact('users'));
+        $search = $request->search;
+        $filterEmail = $request->email;
+
+        $allEmails = User::pluck('email')->unique();
+
+        $users = User::query()
+            ->search($search)
+            ->filter('email', $filterEmail)
+            ->orderBy('id', 'desc')
+            ->paginate(12)       // <= pagination
+            ->withQueryString(); // <= agar filter & search tetap tersimpan
+
+        return view('guest.user.index', compact('users', 'allEmails'));
     }
 
     public function create()

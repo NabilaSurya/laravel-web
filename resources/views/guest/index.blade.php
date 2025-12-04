@@ -92,6 +92,55 @@
                         <i class="fa fa-plus mr-1"></i> Tambah Kategori
                     </a>
                 </div>
+                {{-- === FILTER AREA (DITAMBAHKAN) === --}}
+                <div class="table-responsive mb-6">
+                    <form method="GET" action="{{ route('guest.index') }}" onchange="this.form.submit()"
+                        class="mb-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            {{-- Filter Kode --}}
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">Filter Kode</label>
+                                <select name="kode" class="form-select w-full rounded-lg border-gray-300"
+                                    onchange="this.form.submit()">
+                                    <option value="">Semua Kode</option>
+
+                                    @foreach ($allKode as $kode)
+                                        <option value="{{ $kode }}"
+                                            {{ request('kode') == $kode ? 'selected' : '' }}>
+                                            {{ $kode }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            {{-- Search Input --}}
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">Cari Nama/Kode</label>
+                                <div class="input-group flex">
+                                    <input type="text" name="search"
+                                        class="form-control w-full rounded-lg border-gray-300" placeholder="Search..."
+                                        value="{{ request('search') }}">
+                                    <button type="submit"
+                                        class="bg-blue-500 text-white px-2 py-1.5 rounded-lg ml-2 font-semibold">
+                                        Cari
+                                    </button>
+                                </div>
+                            </div>
+
+                            {{-- Tombol Reset --}}
+                            <div class="flex items-end">
+                                <a href="{{ route('kategori_aset.index') }}"
+                                    class="w-full bg-gray-200 text-gray-600 text-sm py-2 rounded-lg text-center font-semibold hover:bg-gray-300 transition">
+                                    Reset Filter
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                {{-- === END FILTER === --}}
+
+                <div class="mb-10">
+                    {{ $kategoriAsets->links('pagination::tailwind') }}
+                </div>
 
                 {{-- **PERUBAHAN KRUSIAL:** Menggunakan Blade Loop untuk menampilkan data DB --}}
                 <div id="cardGridKategori" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

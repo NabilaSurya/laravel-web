@@ -16,4 +16,19 @@ class Warga extends Model
         'alamat',
         'no_hp',
     ];
+    public function scopeSearch($query, $search)
+    {
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('nama', 'like', '%' . $search . '%')
+                    ->orWhere('nik', 'like', '%' . $search . '%');
+            });
+        }
+    }
+    public function scopeFilter($query, $filter)
+    {
+        if ($filter) {
+            $query->where('jenis_kelamin', $filter);
+        }
+    }
 }

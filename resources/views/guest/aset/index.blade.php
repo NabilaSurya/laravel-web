@@ -22,6 +22,84 @@
                     <i class="fa fa-plus mr-1"></i> Tambah Aset
                 </a>
             </div>
+            <div class="mb-6 p-4 border rounded-xl bg-gray-50/50">
+                <form method="GET" action="{{ route('aset.index') }}">
+                    <div class="flex flex-wrap items-end gap-3">
+
+                        {{-- 🔎 Search Aset dengan Tombol Clear --}}
+                        <div class="flex-grow max-w-sm">
+                            <label for="search" class="text-gray-600 text-xs font-semibold block mb-1">Cari Aset</label>
+                            <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden bg-white">
+                                <input type="text" name="search" id="search"
+                                    class="w-full px-3 py-2 text-sm focus:ring-0 focus:outline-none border-none"
+                                    value="{{ request('search') }}" placeholder="Nama atau kode aset...">
+
+                                <button type="submit" class="p-2 bg-gray-100 hover:bg-gray-200 text-gray-500 transition">
+                                    <i class="fa fa-search text-sm"></i>
+                                </button>
+                            </div>
+
+                            {{-- Tombol Clear Search (Di bawah input) --}}
+                            @if (request('search'))
+                                <a href="{{ request()->fullUrlWithQuery(['search' => null]) }}"
+                                    class="text-xs text-red-500 hover:text-red-700 font-medium mt-1 float-right">
+                                    Hapus Pencarian
+                                </a>
+                            @endif
+                        </div>
+
+                        {{-- 🏷️ Filter Kategori (Auto Submit) --}}
+                        <div class="w-full sm:w-auto min-w-[150px]">
+                            <label for="kategori" class="text-gray-600 text-xs font-semibold block mb-1">Kategori</label>
+                            <select name="kategori" id="kategori"
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 focus:ring-blue-500 focus:border-blue-500 transition"
+                                onchange="this.form.submit()">
+                                <option value="">Semua</option>
+                                @foreach ($kategori as $k)
+                                    <option value="{{ $k->kategori_id }}"
+                                        {{ request('kategori') == $k->kategori_id ? 'selected' : '' }}>
+                                        {{ $k->nama }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        {{-- 📅 Tanggal Mulai --}}
+                        <div class="w-full sm:w-auto min-w-[150px]">
+                            <label for="tanggal_mulai" class="text-gray-600 text-xs font-semibold block mb-1">Dari
+                                Tanggal</label>
+                            <input type="date" name="tanggal_mulai" id="tanggal_mulai"
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 focus:ring-blue-500 focus:border-blue-500 transition"
+                                value="{{ request('tanggal_mulai') }}">
+                        </div>
+
+                        {{-- 📅 Tanggal Akhir --}}
+                        <div class="w-full sm:w-auto min-w-[150px]">
+                            <label for="tanggal_akhir" class="text-gray-600 text-xs font-semibold block mb-1">Sampai
+                                Tanggal</label>
+                            <input type="date" name="tanggal_akhir" id="tanggal_akhir"
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 focus:ring-blue-500 focus:border-blue-500 transition"
+                                value="{{ request('tanggal_akhir') }}">
+                        </div>
+
+                        {{-- Tombol Aksi (Filter Manual & Reset) --}}
+                        <div class="flex gap-2 self-end mt-2 md:mt-0">
+                            <button type="submit"
+                                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-md transition whitespace-nowrap">
+                                <i class="fa fa-funnel-dollar mr-1"></i> Filter
+                            </button>
+                            <a href="{{ route('aset.index') }}"
+                                class="border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm font-semibold transition whitespace-nowrap">
+                                <i class="fa fa-redo-alt mr-1"></i> Reset
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="mt-3">
+                {{ $asets->links() }}
+            </div>
+            <div class="mt-10"></div>
 
             <div id="cardGridAset" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 

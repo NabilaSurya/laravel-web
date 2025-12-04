@@ -10,10 +10,18 @@ class WargaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $wargas = Warga::latest()->get();
-        return view('guest/warga.index', compact('wargas'));
+        $search   = $request->search;
+        $filterJK = $request->jenis_kelamin;
+
+        $wargas = Warga::search($search)
+            ->filter($filterJK)
+            ->latest()
+            ->paginate(12)        // pake pagination
+            ->withQueryString();  // supaya pagination tetap membawa filter/search
+
+        return view('guest.warga.index', compact('wargas'));
     }
 
     /**

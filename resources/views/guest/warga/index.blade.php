@@ -23,6 +23,36 @@
                             <i class="fa fa-plus mr-1"></i> Tambah Warga
                         </a>
                     </div>
+                    {{-- FORM FILTER PENCARIAN DITAMBAHKAN DI SINI --}}
+                    <div class="p-6">
+                        <form method="GET" class="flex flex-col sm:flex-row gap-3">
+                            {{-- Input Pencarian --}}
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                class="border border-gray-300 px-3 py-2 text-sm rounded-lg w-full sm:w-64 focus:border-blue-500 focus:ring-blue-500 transition duration-150"
+                                placeholder="Cari nama / NIK...">
+
+                            {{-- Select Jenis Kelamin --}}
+                            <select name="jenis_kelamin"
+                                class="border border-gray-300 px-3 py-2 text-sm rounded-lg w-full sm:w-48 focus:border-blue-500 focus:ring-blue-500 transition duration-150">
+                                <option value="">Semua Jenis Kelamin</option>
+                                <option value="Laki-laki" {{ request('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>
+                                    Laki-laki</option>
+                                <option value="Perempuan" {{ request('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>
+                                    Perempuan</option>
+                            </select>
+
+                            {{-- Tombol Filter/Cari --}}
+                            <button
+                                class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition duration-150 shadow-md">
+                                <i class="fa fa-filter mr-1"></i> Filter
+                            </button>
+                        </form>
+                    </div>
+                    {{-- AKHIR FORM FILTER --}}
+                    <div class="mt-4">
+                        {{ $wargas->links() }}
+                    </div>
+                    <div class="mt-10"></div>
 
                     {{-- GRID CARD --}}
                     <div class="flex-auto p-6">

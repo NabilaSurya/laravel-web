@@ -13,35 +13,19 @@ class KategoriAsetSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('kategori_aset')->insert([
-            [
-                'nama' => 'Peralatan Kantor',
-                'kode' => 'PK',
-                'deskripsi' => 'Semua peralatan yang digunakan untuk operasional kantor.',
+        $data = [];
+
+        // Generate 1000 data baru
+        for ($i = 1; $i <= 1000; $i++) {
+            $data[] = [
+                'nama' => 'Kategori Aset ' . $i,
+                'kode' => 'KA' . $i,
+                'deskripsi' => 'Deskripsi kategori aset ke-' . $i,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-            [
-                'nama' => 'Perangkat Keras Komputer',
-                'kode' => 'PHK',
-                'deskripsi' => 'Perangkat keras termasuk PC, laptop, monitor, dan server.',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nama' => 'Bangunan',
-                'kode' => 'BGN',
-                'deskripsi' => 'Aset berupa bangunan fisik dan infrastruktur.',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nama' => 'Kendaraan',
-                'kode' => 'KDR',
-                'deskripsi' => 'Aset berupa kendaraan bermotor atau non-bermotor.',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+            ];
+        }
+
+        DB::table('kategori_aset')->insert($data);
     }
 }

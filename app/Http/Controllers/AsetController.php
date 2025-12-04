@@ -11,10 +11,18 @@ class AsetController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $asets = Aset::with('kategori')->get();
-        return view('guest/aset.index', compact('asets'));
+        $asets = Aset::with('kategori')
+            ->search($request, ['nama_aset', 'kode_aset']) // pencarian
+            ->filterTanggal($request) // filter tanggal
+            ->filterKategori($request) // filter dropdown kategori
+            ->paginate(10)
+            ->withQueryString();
+
+        $kategori = KategoriAset::all();
+
+        return view('guest.aset.index', compact('asets', 'kategori'));
     }
 
     /**

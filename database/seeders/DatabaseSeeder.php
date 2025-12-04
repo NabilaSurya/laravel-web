@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AsetSeeder::class,
         ]);
+        $this->call(WargaSeeder::class);
     }
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Aset;
 use App\Models\KategoriAset;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class AsetSeeder extends Seeder
@@ -14,31 +15,27 @@ class AsetSeeder extends Seeder
      */
     public function run(): void
     {
-        // Ambil salah satu kategori yang sudah ada
-        $kategori = KategoriAset::first();
+        $faker = Faker::create();
 
-        // Jika belum ada, berhenti agar tidak error
-        if (!$kategori) {
-            $this->command->warn('⚠️ Tidak ada data kategori_aset. Jalankan seeder kategori dulu.');
+        // Ambil semua kategori yang sudah ada
+        $kategoris = KategoriAset::all();
+
+        if ($kategoris->isEmpty()) {
+            $this->command->info('Tidak ada kategori aset. Tambahkan kategori dulu!');
             return;
         }
 
-        Aset::create([
-            'kategori_id' => $kategori->kategori_id,
-            'kode_aset' => 'AST001',
-            'nama_aset' => 'Laptop Dell Inspiron',
-            'tgl_perolehan' => '2024-02-20',
-            'nilai_perolehan' => 10500000,
-            'kondisi' => 'Baik',
-        ]);
+        for ($i = 1; $i <= 1000; $i++) {
+            $kategori = $kategoris->random(); // pilih kategori random
 
-        Aset::create([
-            'kategori_id' => $kategori->kategori_id,
-            'kode_aset' => 'AST002',
-            'nama_aset' => 'Printer Canon',
-            'tgl_perolehan' => '2023-10-12',
-            'nilai_perolehan' => 2500000,
-            'kondisi' => 'Cukup',
-        ]);
+            Aset::create([
+                'kategori_id' => $kategori->kategori_id,
+                'kode_aset' => 'AST' . str_pad($i, 4, '0', STR_PAD_LEFT),
+                'nama_aset' => $faker->word . ' ' . $faker->randomElement(['Laptop', 'Printer', 'Meja', 'Kursi', 'Proyektor', 'AC']),
+                'tgl_perolehan' => $faker->date('Y-m-d', 'now'),
+                'nilai_perolehan' => $faker->numberBetween(500000, 20000000),
+                'kondisi' => $faker->randomElement(['Baik', 'Cukup', 'Rusak']),
+            ]);
+        }
     }
 }
