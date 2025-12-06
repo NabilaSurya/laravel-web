@@ -109,6 +109,21 @@
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>
+                    {{-- FOTO ASET (UPLOAD) --}}
+                    <div class="mb-4">
+                        <label for="foto" class="block text-sm font-medium text-gray-700 mb-1">Foto Aset</label>
+                        <input type="file" name="foto" id="foto"
+                            class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+
+                        {{-- Tampilkan foto lama kalau ada --}}
+                        @if ($aset->foto)
+                            <div class="mt-3">
+                                <p class="text-sm text-gray-600 mb-1">Foto Lama:</p>
+                                <img src="{{ asset('storage/' . $aset->foto) }}"
+                                    class="w-32 h-32 object-cover rounded shadow">
+                            </div>
+                        @endif
+                    </div>
 
                     {{-- BUTTONS --}}
                     <div class="flex justify-end gap-3 pt-4 border-t">

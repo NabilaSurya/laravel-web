@@ -12,7 +12,7 @@
                     <p class="text-sm text-gray-500 mt-1">Isi detail aset baru dan relasikan dengan kategori yang tepat.</p>
                 </div>
 
-                <form action="{{ route('aset.store') }}" method="POST">
+                <form action="{{ route('aset.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     {{-- KATEGORI ASET (SELECT) --}}
@@ -97,6 +97,15 @@
                             @endforeach
                         </select>
                         @error('kondisi')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    {{-- FOTO ASET --}}
+                    <div class="mb-6">
+                        <label for="foto" class="block text-sm font-medium text-gray-700 mb-1">Foto Aset</label>
+                        <input type="file" class="w-full px-4 py-2 border rounded-lg shadow-sm" name="foto"
+                            id="foto" accept="image/*">
+                        @error('foto')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>

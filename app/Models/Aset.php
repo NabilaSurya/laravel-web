@@ -19,7 +19,8 @@ class Aset extends Model
         'nama_aset',
         'tgl_perolehan',
         'nilai_perolehan',
-        'kondisi'
+        'kondisi',
+        'foto'
     ];
 
     public function kategori()

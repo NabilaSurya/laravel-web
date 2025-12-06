@@ -46,7 +46,11 @@ class AsetController extends Controller
             'tgl_perolehan' => 'required|date',
             'nilai_perolehan' => 'required|numeric',
             'kondisi' => 'required',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
+        if ($request->hasFile('foto')) {
+            $validated['foto'] = $request->file('foto')->store('aset', 'public');
+        }
 
         Aset::create($validated);
         return redirect()->route('aset.index')->with('success', 'Data aset berhasil ditambahkan');
@@ -81,7 +85,15 @@ class AsetController extends Controller
             'tgl_perolehan' => 'required|date',
             'nilai_perolehan' => 'required|numeric',
             'kondisi' => 'required',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
+        if ($request->hasFile('foto')) {
+            if ($aset->foto && file_exists(storage_path('app/public/' . $aset->foto))) {
+                unlink(storage_path('app/public/' . $aset->foto));
+            }
+
+            $validated['foto'] = $request->file('foto')->store('aset', 'public');
+        }
 
         $aset->update($validated);
         return redirect()->route('aset.index')->with('success', 'Data aset berhasil diperbarui');

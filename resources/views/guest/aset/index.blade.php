@@ -106,6 +106,15 @@
                 @forelse ($asets as $aset)
                     <div
                         class="asset-card bg-white p-4 rounded-xl shadow-md border-t-4 border-blue-600 transition hover:shadow-lg relative hover:scale-[1.02] duration-200">
+                        {{-- FOTO ASET --}}
+                        @if ($aset->foto)
+                            <img src="{{ asset('storage/' . $aset->foto) }}"
+                                class="w-full h-40 object-cover rounded-lg mb-3" alt="Foto Aset {{ $aset->nama_aset }}">
+                        @else
+                            <div class="w-full h-40 bg-gray-200 flex items-center justify-center rounded-lg mb-3">
+                                <i class="fa fa-image text-gray-400 text-3xl"></i>
+                            </div>
+                        @endif
 
                         <span class="absolute top-2 right-4 text-xs font-semibold text-gray-400">Kode:
                             {{ $aset->kode_aset }}</span>

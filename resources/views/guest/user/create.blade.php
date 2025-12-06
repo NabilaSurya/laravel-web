@@ -71,6 +71,16 @@
                                         class="text-sm focus:shadow-primary-outline ease w-full leading-5.6 relative block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 px-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
                                         placeholder="Ulangi password" required>
                                 </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Role</label>
+                                    <select name="role" class="form-control" required>
+                                        <option value="">-- Pilih Role --</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="warga">Warga</option>
+                                        <option value="mitra">Mitra</option>
+                                    </select>
+                                </div>
+
                             </div>
 
                             <!-- Tombol Aksi -->

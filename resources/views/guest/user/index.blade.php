@@ -40,8 +40,7 @@
                                 value="{{ request('search') }}" placeholder="Cari nama atau email...">
                         </div>
 
-                        {{-- FILTER EMAIL (Diubah menjadi Role jika tersedia, atau biarkan email) --}}
-                        {{-- Saya asumsikan Anda ingin filter role, karena email biasanya unik. Jika memang filter email, kode ini sudah benar --}}
+                        {{-- FILTER EMAIL --}}
                         <div>
                             <label for="email_filter"
                                 class="block mb-1 text-xs font-semibold text-gray-600 dark:text-gray-300">Filter
@@ -97,6 +96,7 @@
                                     <div>
                                         <h2 class="text-lg font-bold text-gray-900 dark:text-white">{{ $user->name }}</h2>
                                         <p class="text-sm text-gray-500 dark:text-gray-400">{{ $user->email }}</p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">{{ $user->role }}</p>
                                     </div>
                                 </div>
 

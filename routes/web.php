@@ -42,7 +42,9 @@ Route::get('/inventaris', function () {
 
 Route::resource('kategori_aset', KategoriAsetController::class);
 
-Route::resource('user', UserController::class);
+Route::middleware('checkislogin')->group(function () {
+    Route::resource('/user', UserController::class);
+});
 
 Route::resource('warga', WargaController::class);
 
