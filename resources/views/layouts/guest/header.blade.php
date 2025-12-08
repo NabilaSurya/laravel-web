@@ -8,16 +8,30 @@
 
         <!-- Bagian Kanan Header untuk Navigasi -->
         <div class="flex gap-6">
-            <!-- Link ke halaman About -->
-            <a href="{{ route('about') }}" class="text-blue-600 hover:text-blue-800 transition duration-300">About</a>
+            <a href="{{ route('kategori_aset.index') }}"
+                class="text-blue-600 hover:text-blue-800 transition duration-300 flex items-center gap-1">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
 
-            <!-- Link ke halaman Kategori Aset -->
-            <a href="{{ route('kategori_aset.index') }}" class="text-blue-600 hover:text-blue-800 transition duration-300">Kategori Aset</a>
+            <a href="#tabelAset"
+                class="text-blue-600 hover:text-blue-800 transition duration-300 flex items-center gap-1">
+                <i class="fas fa-list-alt"></i> Kategori Aset
+            </a>
 
-            <!-- Link ke halaman Warga -->
-            <a href="{{ route('warga.index') }}" class="text-blue-600 hover:text-blue-800 transition duration-300">Warga</a>
+            <a href="{{ route('warga.index') }}"
+                class="text-blue-600 hover:text-blue-800 transition duration-300 flex items-center gap-1">
+                <i class="fas fa-users"></i> Warga
+            </a>
 
-            <a href="{{ route('user.index') }}" class="text-blue-600 hover:text-blue-800 transition duration-300">User</a>
+            <a href="{{ route('user.index') }}"
+                class="text-blue-600 hover:text-blue-800 transition duration-300 flex items-center gap-1">
+                <i class="fas fa-user-circle"></i> User
+            </a>
+
+            <a href="{{ route('about') }}"
+                class="text-blue-600 hover:text-blue-800 transition duration-300 flex items-center gap-1">
+                <i class="fas fa-info-circle"></i> About
+            </a>
         </div>
     </div>
 </header>
