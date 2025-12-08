@@ -8,10 +8,21 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
-        return view('guest/user.index', compact('users'));
+        $search = $request->search;
+        $filterEmail = $request->email;
+
+        $allEmails = User::pluck('email')->unique();
+
+        $users = User::query()
+            ->search($search)
+            ->filter('email', $filterEmail)
+            ->orderBy('id', 'desc')
+            ->paginate(12)       // <= pagination
+            ->withQueryString(); // <= agar filter & search tetap tersimpan
+
+        return view('guest.user.index', compact('users', 'allEmails'));
     }
 
     public function create()
@@ -25,12 +36,14 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:6',
+            'role' => 'required|in:admin,warga,mitra',
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
 
         return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan!');
@@ -47,11 +60,13 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|confirmed|min:6',
+            'role' => 'required|in:admin,warga,mitra',
         ]);
 
         $data = [
             'name' => $request->name,
             'email' => $request->email,
+            'role' => $request->role,
         ];
 
         if ($request->password) {

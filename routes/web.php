@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\KategoriAset;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AsetController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TableController;
@@ -40,10 +42,17 @@ Route::get('/inventaris', function () {
 
 Route::resource('kategori_aset', KategoriAsetController::class);
 
-Route::resource('user', UserController::class);
+Route::middleware('checkislogin')->group(function () {
+    Route::resource('/user', UserController::class);
+});
 
 Route::resource('warga', WargaController::class);
 
 Route::get('/about', function () {
     return view('guest/about.about');
 })->name('about');
+
+Route::get('/', [KategoriAsetController::class, 'index'])->name('guest.index');
+
+Route::resource('aset', AsetController::class);
+Route::get('/aset', [AsetController::class, 'index'])->name('aset.index');

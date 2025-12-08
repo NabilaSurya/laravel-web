@@ -41,6 +41,15 @@
                     class="w-full border-gray-300 rounded-md p-2 focus:ring-blue-400 focus:border-blue-400">
             </div>
 
+            <div class="mb-3">
+                <label class="form-label">Role</label>
+                <select name="role" class="form-control" required>
+                    <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                    <option value="warga" {{ $user->role == 'warga' ? 'selected' : '' }}>Warga</option>
+                    <option value="mitra" {{ $user->role == 'mitra' ? 'selected' : '' }}>Mitra</option>
+                </select>
+            </div>
+
             <div class="flex justify-between">
                 <a href="{{ route('user.index') }}"
                     class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">Kembali</a>

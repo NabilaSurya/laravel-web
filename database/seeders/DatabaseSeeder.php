@@ -18,6 +18,12 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'role' => 'user',
         ]);
+
+        $this->call([
+            AsetSeeder::class,
+        ]);
+        $this->call(WargaSeeder::class);
     }
 }

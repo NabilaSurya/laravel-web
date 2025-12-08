@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CreateFirstUser extends Seeder
 {
@@ -14,11 +14,16 @@ class CreateFirstUser extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'nabila surya',
-            'email' => 'nabila24si@gmail.com',
-            'password' => Hash::make('nabila123'),
-        ]);
+        $faker = Faker::create('id_ID');
 
+        // User utama (replace/update berdasarkan email)
+        User::updateOrCreate(
+            ['email' => 'nabila@gmail.com'],
+            [
+                'name' => 'Nabila',
+                'password' => Hash::make('nabila123'),
+                'role' => 'admin'
+            ]
+        );
     }
 }
