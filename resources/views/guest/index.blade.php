@@ -15,7 +15,8 @@
     {{-- Memuat header fixed/navbar --}}
     @include('layouts.guest.header')
 
-    <section class="relative h-[70vh] flex items-center justify-center text-center bg-cover bg-center hero-bg">
+    <section class="relative h-[70vh] flex items-center justify-center text-center bg-cover bg-center hero-bg"
+        style="background-image: url('{{ asset('assets/img/desa.png') }}'); background-blend-mode: multiply; background-color: rgba(30, 41, 59, 0.8);">
         <div class="px-6">
             <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">Dashboard Publik Aset</h2>
             <p class="text-lg text-gray-200 mb-6 max-w-2xl mx-auto">
@@ -30,7 +31,7 @@
 
                 <a href="#tabelAset"
                     class="py-2.5 flex items-center justify-center w-64 mx-auto px-4 font-semibold text-sm rounded-lg transition-all duration-200 ease-in-out
-    {{ $isActive ? 'bg-blue-500 text-white shadow-md' : 'text-white hover:bg-blue-600/90 focus:bg-blue-600' }}">
+    {{ $isActive ? 'bg-blue-500 text-white shadow-md' : 'bg-blue-500 text-white hover:bg-blue-600/90 focus:bg-blue-600' }}">
 
                     {{-- Menggunakan ikon yang berwarna putih --}}
                     <i class="fa fa-list-alt text-sm mr-2 text-white"></i>

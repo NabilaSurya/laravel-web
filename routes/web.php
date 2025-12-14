@@ -9,6 +9,7 @@ use App\Http\Controllers\TableController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PengembangController;
 use App\Http\Controllers\KategoriAsetController;
 
 Route::get('/', function () {
@@ -56,3 +57,7 @@ Route::get('/', [KategoriAsetController::class, 'index'])->name('guest.index');
 
 Route::resource('aset', AsetController::class);
 Route::get('/aset', [AsetController::class, 'index'])->name('aset.index');
+
+Route::get('/aset/{aset}', [AsetController::class, 'show'])->name('aset.show');
+
+Route::get('/pengembang', [PengembangController::class, 'index'])->name('pengembang');

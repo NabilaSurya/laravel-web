@@ -61,7 +61,9 @@ class AsetController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $aset = Aset::with('kategori')->findOrFail($id);
+
+        return view('guest.aset.show', compact('aset'));
     }
 
     /**

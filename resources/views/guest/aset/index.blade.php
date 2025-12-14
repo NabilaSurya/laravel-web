@@ -154,6 +154,11 @@
                         </div>
 
                         <div class="mt-4 flex justify-end gap-3 text-xs">
+                            <a href="{{ route('aset.show', $aset) }}"
+                                class="text-indigo-500 hover:text-indigo-700 font-medium transition">
+                                <i class="fa fa-eye mr-1"></i> Detail
+                            </a>
+
                             {{-- Tombol Edit --}}
                             <a href="{{ route('aset.edit', $aset) }}"
                                 class="text-blue-500 hover:text-blue-700 font-medium transition">

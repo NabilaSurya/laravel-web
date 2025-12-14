@@ -16,7 +16,7 @@ class CreateFirstUser extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        // User utama (replace/update berdasarkan email)
+        // User utama
         User::updateOrCreate(
             ['email' => 'nabila@gmail.com'],
             [
@@ -25,5 +25,15 @@ class CreateFirstUser extends Seeder
                 'role' => 'admin'
             ]
         );
+
+        // Tambahkan 1000 user Indonesia
+        for ($i = 0; $i < 1000; $i++) {
+            User::create([
+                'name' => $faker->name(),
+                'email' => $faker->unique()->safeEmail(),
+                'password' => Hash::make('password'), // default
+                'role' => 'user',  // sesuaikan kalau pakai enum/role lain
+            ]);
+        }
     }
 }
