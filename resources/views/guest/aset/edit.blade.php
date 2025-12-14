@@ -12,7 +12,7 @@
                     <p class="text-sm text-gray-500 mt-1">Perbarui informasi aset ini.</p>
                 </div>
 
-                <form action="{{ route('aset.update', $aset) }}" method="POST">
+                <form action="{{ route('aset.update', $aset) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT') {{-- PENTING: Menggunakan PUT method --}}
 

@@ -14,19 +14,32 @@
                 <i class="fas fa-chart-pie w-4 text-blue-600"></i> Dashboard
             </a>
 
-            <a href="#tabelAset"
-                class="text-gray-600 hover:text-blue-700 transition duration-300 flex items-center gap-1 font-medium">
-                <i class="fas fa-layer-group w-4 text-blue-600"></i> Kategori Aset
-            </a>
+            <div class="relative" x-data="{ open: false }">
+                <button @click="open = !open" @click.outside="open = false"
+                    class="text-gray-600 hover:text-blue-700 transition duration-300 flex items-center gap-1 font-medium">
+                    <i class="fas fa-layer-group w-4 text-blue-600"></i>
+                    Menu Umum
+                    <i class="fas fa-chevron-down text-xs ml-1"></i>
+                </button>
+
+                <div x-show="open" x-transition x-cloak
+                    class="absolute top-full mt-2 w-48 bg-white border border-gray-100 shadow-lg rounded-lg py-2 z-50">
+
+                    <a href="{{ route('kategori_aset.index') }}"
+                        class="block px-4 py-2 text-gray-700 hover:bg-blue-50 transition">
+                        <i class="fas fa-tags mr-2 text-blue-600"></i> Kategori Aset
+                    </a>
+
+                    <a href="{{ route('aset.index') }}"
+                        class="block px-4 py-2 text-gray-700 hover:bg-blue-50 transition">
+                        <i class="fas fa-boxes-stacked mr-2 text-blue-600"></i> Data Aset
+                    </a>
+                </div>
+            </div>
 
             <a href="{{ route('warga.index') }}"
                 class="text-blue-600 hover:text-blue-800 transition duration-300 flex items-center gap-1">
                 <i class="fas fa-users"></i> Warga
-            </a>
-
-            <a href="{{ route('user.index') }}"
-                class="text-blue-600 hover:text-blue-800 transition duration-300 flex items-center gap-1">
-                <i class="fas fa-user-circle"></i> User
             </a>
 
             <a href="{{ route('about') }}"
@@ -39,10 +52,32 @@
                 <i class="fas fa-user-gear w-4 text-blue-600"></i> Pengembang
             </a>
 
-            <a href="{{ route('user.index') }}"
-                class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-150 shadow-md text-sm font-semibold">
-                <i class="fas fa-user-circle mr-1"></i> Login Operator
-            </a>
+            <div class="relative" x-data="{ openAuth: false }">
+                <button @click="openAuth = !openAuth" @click.outside="openAuth = false"
+                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-150 shadow-md text-sm font-semibold flex items-center gap-2">
+                    <i class="fas fa-user-circle"></i>
+                    Login Operator
+                    <i class="fas fa-chevron-down text-xs"></i>
+                </button>
+
+                <div x-show="openAuth" x-transition x-cloak
+                    class="absolute right-0 mt-2 w-40 bg-white border border-gray-100 shadow-lg rounded-lg py-2 z-50">
+
+                    <a href="{{ route('user.index') }}"
+                        class="block px-4 py-2 text-gray-700 hover:bg-blue-50 transition">
+                        <i class="fas fa-right-to-bracket mr-2 text-blue-600"></i> User
+                    </a>
+
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit"
+                            class="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 transition">
+                            <i class="fas fa-right-from-bracket mr-2"></i> Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
+
         </div>
 
         <button @click="openMenu = !openMenu"
@@ -59,10 +94,27 @@
                 <i class="fas fa-chart-pie mr-3 w-5 text-blue-600"></i> Dashboard
             </a>
 
-            <a href="#tabelAset"
-                class="block px-4 py-3 text-gray-800 hover:bg-blue-50 transition rounded-lg mx-2 my-1 font-medium">
-                <i class="fas fa-layer-group mr-3 w-5 text-blue-600"></i> Kategori Aset
-            </a>
+            <div x-data="{ openAset: false }" class="mx-2 my-1">
+                <button @click="openAset = !openAset"
+                    class="w-full flex justify-between items-center px-4 py-3 text-gray-800 hover:bg-blue-50 transition rounded-lg font-medium">
+                    <span>
+                        <i class="fas fa-layer-group mr-3 w-5 text-blue-600"></i> Aset
+                    </span>
+                    <i class="fas fa-chevron-down text-sm"></i>
+                </button>
+
+                <div x-show="openAset" x-transition x-cloak class="pl-6">
+                    <a
+                        href="{{ route('kategori_aset.index') }}"class="block px-4 py-2 text-gray-700 hover:text-blue-600 transition">
+                        <i class="fas fa-tags mr-2"></i> Kategori Aset
+                    </a>
+
+                    <a href="{{ route('aset.index') }}"
+                        class="block px-4 py-2 text-gray-700 hover:text-blue-600 transition">
+                        <i class="fas fa-boxes-stacked mr-2"></i> Data Aset
+                    </a>
+                </div>
+            </div>
 
             <a href="{{ route('warga.index') }}"
                 class="block px-4 py-3 text-gray-800 hover:bg-blue-50 transition rounded-lg mx-2 my-1 font-medium">
@@ -74,10 +126,32 @@
                 <i class="fas fa-info-circle mr-3 w-5 text-blue-600"></i> About
             </a>
 
-            <a href="{{ route('user.index') }}"
-                class="block px-4 py-3 text-white bg-blue-600 hover:bg-blue-700 transition rounded-b-xl mt-2 font-semibold text-center mx-2">
-                <i class="fas fa-sign-in-alt mr-3 w-5"></i> Login Operator
-            </a>
+            <div x-data="{ openAuthMobile: false }" class="mx-2 mt-2">
+                <button @click="openAuthMobile = !openAuthMobile"
+                    class="w-full px-4 py-3 bg-blue-600 text-white rounded-xl font-semibold flex justify-between items-center">
+                    <span>
+                        <i class="fas fa-user-circle mr-2"></i> Login Operator
+                    </span>
+                    <i class="fas fa-chevron-down text-sm"></i>
+                </button>
+
+                <div x-show="openAuthMobile" x-transition x-cloak
+                    class="mt-2 bg-white rounded-xl shadow-md overflow-hidden">
+                    <a href="{{ route('user.index') }}"
+                        class="block px-4 py-3 text-gray-800 hover:bg-blue-50 transition">
+                        <i class="fas fa-right-to-bracket mr-2 text-blue-600"></i>
+                    </a>
+
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit"
+                            class="w-full text-left px-4 py-3 text-red-600 hover:bg-red-50 transition">
+                            <i class="fas fa-right-from-bracket mr-2"></i> Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
+
         </div>
 
     </div>

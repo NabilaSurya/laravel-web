@@ -61,3 +61,5 @@ Route::get('/aset', [AsetController::class, 'index'])->name('aset.index');
 Route::get('/aset/{aset}', [AsetController::class, 'show'])->name('aset.show');
 
 Route::get('/pengembang', [PengembangController::class, 'index'])->name('pengembang');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
