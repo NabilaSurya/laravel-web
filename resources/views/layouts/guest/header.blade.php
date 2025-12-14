@@ -42,15 +42,28 @@
                 <i class="fas fa-users"></i> Warga
             </a>
 
-            <a href="{{ route('about') }}"
-                class="text-blue-600 hover:text-blue-800 transition duration-300 flex items-center gap-1">
-                <i class="fas fa-info-circle"></i> About
-            </a>
+            <div class="relative" x-data="{ openInfo: false }">
+                <button @click="openInfo = !openInfo" @click.outside="openInfo = false"
+                    class="text-gray-600 hover:text-blue-700 transition duration-300 flex items-center gap-1 font-medium">
+                    <i class="fas fa-circle-info w-4 text-blue-600"></i>
+                    Informasi
+                    <i class="fas fa-chevron-down text-xs ml-1"></i>
+                </button>
 
-            <a href="{{ route('pengembang') }}"
-                class="text-gray-600 hover:text-blue-700 transition duration-300 flex items-center gap-1 font-medium">
-                <i class="fas fa-user-gear w-4 text-blue-600"></i> Pengembang
-            </a>
+                <div x-show="openInfo" x-transition x-cloak
+                    class="absolute top-full mt-2 w-48 bg-white border border-gray-100 shadow-lg rounded-lg py-2 z-50">
+
+                    <a href="{{ route('about') }}" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 transition">
+                        <i class="fas fa-info-circle mr-2 text-blue-600"></i> Tentang Aplikasi
+                    </a>
+
+                    <a href="{{ route('pengembang') }}"
+                        class="block px-4 py-2 text-gray-700 hover:bg-blue-50 transition">
+                        <i class="fas fa-user-gear mr-2 text-blue-600"></i> Profil Pengembang
+                    </a>
+                </div>
+            </div>
+
 
             <div class="relative" x-data="{ openAuth: false }">
                 <button @click="openAuth = !openAuth" @click.outside="openAuth = false"
@@ -121,10 +134,27 @@
                 <i class="fas fa-users mr-3 w-5 text-blue-600"></i> Warga
             </a>
 
-            <a href="{{ route('about') }}"
-                class="block px-4 py-3 text-gray-800 hover:bg-blue-50 transition rounded-lg mx-2 my-1 font-medium">
-                <i class="fas fa-info-circle mr-3 w-5 text-blue-600"></i> About
-            </a>
+            <div x-data="{ openInfo: false }" class="mx-2 my-1">
+                <button @click="openInfo = !openInfo"
+                    class="w-full flex justify-between items-center px-4 py-3 text-gray-800 hover:bg-blue-50 transition rounded-lg font-medium">
+                    <span>
+                        <i class="fas fa-circle-info mr-3 w-5 text-blue-600"></i> Informasi
+                    </span>
+                    <i class="fas fa-chevron-down text-sm"></i>
+                </button>
+
+                <div x-show="openInfo" x-transition x-cloak class="pl-6">
+                    <a href="{{ route('about') }}"
+                        class="block px-4 py-2 text-gray-700 hover:text-blue-600 transition">
+                        <i class="fas fa-info-circle mr-2"></i> Tentang Aplikasi
+                    </a>
+
+                    <a href="{{ route('pengembang') }}"
+                        class="block px-4 py-2 text-gray-700 hover:text-blue-600 transition">
+                        <i class="fas fa-user-gear mr-2"></i> Profil Pengembang
+                    </a>
+                </div>
+            </div>
 
             <div x-data="{ openAuthMobile: false }" class="mx-2 mt-2">
                 <button @click="openAuthMobile = !openAuthMobile"
