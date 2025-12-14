@@ -57,7 +57,9 @@
                         <i class="fa fa-layer-group text-2xl text-blue-500"></i>
                     </div>
                     {{-- Ganti nilai statis 15 dengan hitungan dari database --}}
-                    <p class="text-4xl font-bold text-slate-800 mt-2">{{ count($kategoriAsets ?? []) }}</p>
+                    <p class="text-4xl font-bold text-slate-800 mt-2">
+                        {{ $kategoriAsets->total() }}
+                    </p>
                     <p class="text-xs text-gray-400 mt-1">Total data</p>
                 </div>
 
