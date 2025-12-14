@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         integrity="sha512-KOd9xC5q+eQ8R50Hc3iB+Vx3Ktv+FZP9lGF7X3BpGH/9HuZCgL5c+zp8sZ0/If56oK/+jH9CEZwhEovQp6v0xA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     @include('layouts.guest.css')
 
     <style>
