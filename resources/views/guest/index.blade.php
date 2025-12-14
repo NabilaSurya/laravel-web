@@ -15,32 +15,36 @@
     {{-- Memuat header fixed/navbar --}}
     @include('layouts.guest.header')
 
-    <section class="relative h-[70vh] flex items-center justify-center text-center bg-cover bg-center hero-bg"
-        style="background-image: url('{{ asset('assets/img/desa.png') }}'); background-blend-mode: multiply; background-color: rgba(30, 41, 59, 0.8);">
-        <div class="px-6">
-            <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">Dashboard Publik Aset</h2>
-            <p class="text-lg text-gray-200 mb-6 max-w-2xl mx-auto">
-                Lihat dan kelola kategori aset perusahaan dengan tampilan modern dan interaktif.
-            </p>
-            {{-- PERBAIKAN: Mengubah tautan ke ID tabel di halaman ini untuk mengatasi error rute sementara --}}
-            <li class="mt-0.5 w-full list-none">
-                {{-- Memeriksa apakah ini adalah rute aktif untuk memberi warna solid --}}
-                @php
-                    $isActive = request()->routeIs('kategori_aset.index');
-                @endphp
+    <section class="relative h-[70vh] flex items-center justify-center text-center overflow-hidden">
 
-                <a href="#tabelAset"
-                    class="py-2.5 flex items-center justify-center w-64 mx-auto px-4 font-semibold text-sm rounded-lg transition-all duration-200 ease-in-out
-    {{ $isActive ? 'bg-blue-500 text-white shadow-md' : 'bg-blue-500 text-white hover:bg-blue-600/90 focus:bg-blue-600' }}">
-
-                    {{-- Menggunakan ikon yang berwarna putih --}}
-                    <i class="fa fa-list-alt text-sm mr-2 text-white"></i>
-
-                    Lihat Kategori Aset
-                </a>
-            </li>
+        {{-- SLIDESHOW BACKGROUND --}}
+        <div id="hero-slideshow" class="absolute inset-0 z-0">
+            <div class="hero-slide active" style="background-image: url('{{ asset('assets/img/desa.jpg') }}');"></div>
+            <div class="hero-slide" style="background-image: url('{{ asset('assets/img/desa2.jpg') }}');"></div>
+            <div class="hero-slide" style="background-image: url('{{ asset('assets/img/desa3.jpg') }}');"></div>
         </div>
+
+        {{-- OVERLAY GELAP --}}
+        <div class="absolute inset-0 bg-slate-900/70 z-10"></div>
+
+        {{-- KONTEN HERO --}}
+        <div class="relative z-20 px-6">
+            <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">
+                Dashboard Publik Aset
+            </h2>
+            <p class="text-lg text-gray-200 mb-6 max-w-2xl mx-auto">
+                Lihat dan kelola kategori aset desa dengan tampilan modern dan interaktif.
+            </p>
+
+            <a href="#tabelAset"
+                class="inline-flex items-center justify-center w-64 px-4 py-3 font-semibold text-sm rounded-lg
+                   bg-blue-500 text-white hover:bg-blue-600 transition shadow-lg">
+                <i class="fa fa-list-alt mr-2"></i> Lihat Kategori Aset
+            </a>
+        </div>
+
     </section>
+
 
     <main>
         <section class="max-w-6xl mx-auto -mt-10 px-6 z-10 relative">
