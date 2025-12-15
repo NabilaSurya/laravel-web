@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\KategoriAset;
+use App\Http\Middleware\CheckIsRole;
+use App\Http\Middleware\CheckIsLogin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AsetController;
 use App\Http\Controllers\AuthController;
@@ -9,8 +11,11 @@ use App\Http\Controllers\TableController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\LokasiAsetController;
+use App\Http\Controllers\MutasiAsetController;
 use App\Http\Controllers\PengembangController;
 use App\Http\Controllers\KategoriAsetController;
+use App\Http\Controllers\PemeliharaanAsetController;
 
 Route::get('/', function () {
     return view('guest.index');
@@ -43,8 +48,8 @@ Route::get('/inventaris', function () {
 
 Route::resource('kategori_aset', KategoriAsetController::class);
 
-Route::middleware('checkislogin')->group(function () {
-    Route::resource('/user', UserController::class);
+Route::middleware([CheckIsLogin::class, CheckIsRole::class . ':admin'])->group(function () {
+    Route::resource('user', UserController::class);
 });
 
 Route::resource('warga', WargaController::class);
@@ -63,3 +68,8 @@ Route::get('/aset/{aset}', [AsetController::class, 'show'])->name('aset.show');
 Route::get('/pengembang', [PengembangController::class, 'index'])->name('pengembang');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+Route::resource('lokasi-aset', LokasiAsetController::class);
+Route::resource('pemeliharaan-aset', PemeliharaanAsetController::class);
+Route::resource('mutasi-aset', MutasiAsetController::class);

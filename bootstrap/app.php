@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckIsRole;
 use App\Http\Middleware\CheckIsLogin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -16,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'checkislogin' => CheckIsLogin::class,
+            'role' => CheckIsRole::class,
         ]);
     })
 

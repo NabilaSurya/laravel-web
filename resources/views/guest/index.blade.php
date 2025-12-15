@@ -95,7 +95,7 @@
                     </h3>
                     {{-- TOMBOL TAMBAH DATA KECIL --}}
                     <a href="{{ route('kategori_aset.create') }}"
-                        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md">
+                        class="bg-blue-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md">
                         <i class="fa fa-plus mr-1"></i> Tambah Kategori
                     </a>
                 </div>
