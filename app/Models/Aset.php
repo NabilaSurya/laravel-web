@@ -20,7 +20,6 @@ class Aset extends Model
         'tgl_perolehan',
         'nilai_perolehan',
         'kondisi',
-        'foto'
     ];
 
     public function kategori()
@@ -57,5 +56,22 @@ class Aset extends Model
             $query->where('kategori_id', $request->kategori_id);
         }
         return $query;
+    }
+
+    public function media()
+    {
+        return $this->hasMany(Media::class, 'ref_id', 'aset_id')
+            ->where('ref_table', 'aset')
+            ->orderBy('sort_order');
+    }
+
+    /**
+     * Ambil 1 foto utama
+     */
+    public function mainPhoto()
+    {
+        return $this->hasOne(Media::class, 'ref_id', 'aset_id')
+            ->where('ref_table', 'aset')
+            ->orderBy('sort_order');
     }
 }

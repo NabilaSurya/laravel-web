@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aset;
+use App\Models\Media;
 use App\Models\KategoriAset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AsetController extends Controller
 {
@@ -13,12 +15,13 @@ class AsetController extends Controller
      */
     public function index(Request $request)
     {
-        $asets = Aset::with('kategori')
-            ->search($request, ['nama_aset', 'kode_aset']) // pencarian
-            ->filterTanggal($request) // filter tanggal
-            ->filterKategori($request) // filter dropdown kategori
+        $asets = Aset::with(['kategori', 'mainPhoto'])
+            ->search($request, ['nama_aset', 'kode_aset'])
+            ->filterTanggal($request)
+            ->filterKategori($request)
             ->paginate(10)
             ->withQueryString();
+
 
         $kategori = KategoriAset::all();
 
@@ -48,11 +51,22 @@ class AsetController extends Controller
             'kondisi' => 'required',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
+
+        $aset = Aset::create($validated);
+
+        // simpan ke tabel media
         if ($request->hasFile('foto')) {
-            $validated['foto'] = $request->file('foto')->store('aset', 'public');
+            $path = $request->file('foto')->store('aset', 'public');
+
+            Media::create([
+                'ref_table' => 'aset',
+                'ref_id' => $aset->aset_id,
+                'file_name' => $path,
+                'mime_type' => $request->file('foto')->getMimeType(),
+                'sort_order' => 1,
+            ]);
         }
 
-        Aset::create($validated);
         return redirect()->route('aset.index')->with('success', 'Data aset berhasil ditambahkan');
     }
 
@@ -61,7 +75,7 @@ class AsetController extends Controller
      */
     public function show(string $id)
     {
-        $aset = Aset::with('kategori')->findOrFail($id);
+        $aset = Aset::with(['kategori', 'media'])->findOrFail($id);
 
         return view('guest.aset.show', compact('aset'));
     }
@@ -82,23 +96,48 @@ class AsetController extends Controller
     {
         $validated = $request->validate([
             'kategori_id' => 'required',
-            'kode_aset' => 'required',
+            'kode_aset' => 'required|unique:aset,kode_aset,' . $aset->aset_id . ',aset_id',
             'nama_aset' => 'required',
             'tgl_perolehan' => 'required|date',
             'nilai_perolehan' => 'required|numeric',
             'kondisi' => 'required',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
+
+        // update data aset (TANPA foto)
+        $aset->update($validated);
+
+        // jika upload foto baru
         if ($request->hasFile('foto')) {
-            if ($aset->foto && file_exists(storage_path('app/public/' . $aset->foto))) {
-                unlink(storage_path('app/public/' . $aset->foto));
+
+            // ambil foto lama (jika ada)
+            $oldMedia = $aset->media()
+                ->where('ref_table', 'aset')
+                ->first();
+
+            // hapus file & record lama
+            if ($oldMedia) {
+                if (Storage::disk('public')->exists($oldMedia->file_name)) {
+                    Storage::disk('public')->delete($oldMedia->file_name);
+                }
+                $oldMedia->delete();
             }
 
-            $validated['foto'] = $request->file('foto')->store('aset', 'public');
+            // simpan foto baru
+            $path = $request->file('foto')->store('aset', 'public');
+
+            Media::create([
+                'ref_table' => 'aset',
+                'ref_id' => $aset->aset_id,
+                'file_name' => $path,
+                'mime_type' => $request->file('foto')->getMimeType(),
+                'sort_order' => 1,
+            ]);
         }
 
-        $aset->update($validated);
-        return redirect()->route('aset.index')->with('success', 'Data aset berhasil diperbarui');
+        return redirect()
+            ->route('aset.index')
+            ->with('success', 'Data aset berhasil diperbarui');
     }
 
     /**

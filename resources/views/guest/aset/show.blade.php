@@ -12,16 +12,10 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
                 {{-- FOTO ASET --}}
-                <div>
-                    @if (!empty($aset->foto))
-                        <img src="{{ asset('storage/' . $aset->foto) }}" class="w-full h-80 object-cover rounded-xl shadow"
-                            alt="Foto Aset">
-                    @else
-                        <div class="w-full h-80 bg-gray-200 rounded-xl flex flex-col items-center justify-center">
-                            <i class="fa fa-image text-5xl text-gray-400 mb-2"></i>
-                            <p class="text-gray-500">Belum upload foto</p>
-                        </div>
-                    @endif
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    @foreach ($aset->media as $media)
+                        <img src="{{ $media->url }}" class="rounded-lg shadow object-cover h-32 w-full">
+                    @endforeach
                 </div>
 
                 {{-- INFORMASI UTAMA --}}
