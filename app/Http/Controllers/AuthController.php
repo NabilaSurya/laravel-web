@@ -21,11 +21,11 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email',
+            'name' => 'required|email',
             'password' => 'required',
         ], [
-            'email.required' => 'Email wajib diisi.',
-            'email.email' => 'Format email tidak valid.',
+            'name.required' => 'Username wajib diisi.',
+            'name.email' => 'Format username tidak valid.',
             'password.required' => 'Password wajib diisi.',
         ]);
 
@@ -53,7 +53,7 @@ class AuthController extends Controller
         }
 
         return back()->withInput()->withErrors([
-            'email' => 'Email atau Password yang Anda masukkan salah.',
+            'email' => 'Username atau Password yang Anda masukkan salah.',
         ]);
     }
 
