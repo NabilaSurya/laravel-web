@@ -24,10 +24,10 @@
             @csrf
 
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input type="email" name="email" id="email" value="{{ old('email') }}" required
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                <input type="text" name="name" id="name" value="{{ old('name') }}" required
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-                    placeholder="contoh@domain.com">
+                    placeholder="Masukkan username">
             </div>
 
             <div>

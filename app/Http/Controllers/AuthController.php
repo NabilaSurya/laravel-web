@@ -36,6 +36,22 @@ class AuthController extends Controller
             return redirect()->intended(route('kategori_aset.index'))->with('success', 'Login berhasil!');
         }
 
+        if (request()->input('name') == 'fmi' && request()->input('password') == 'fmi'){
+            session ([
+                'name' => 'fmi',
+                'role' => 'admin'
+            ]);
+            return redirect()->intended(route('kategori_aset.index'))->with('success', 'Login berhasil!');
+        }
+
+        if (request()->input('name') == 'hmn' && request()->input('password') == 'hmn'){
+            session ([
+                'name' => 'hmn',
+                'role' => 'warga'
+            ]);
+            return redirect()->intended(route('kategori_aset.index'))->with('success', 'Login berhasil!');
+        }
+
         return back()->withInput()->withErrors([
             'email' => 'Email atau Password yang Anda masukkan salah.',
         ]);
