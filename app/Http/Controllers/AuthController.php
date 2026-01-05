@@ -29,12 +29,12 @@ class AuthController extends Controller
             'password.required' => 'Password wajib diisi.',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        //if (Auth::attempt($credentials)) {
 
-            $request->session()->regenerate();
+         //   $request->session()->regenerate();
 
-            return redirect()->intended(route('kategori_aset.index'))->with('success', 'Login berhasil!');
-        }
+          //  return redirect()->intended(route('kategori_aset.index'))->with('success', 'Login berhasil!');
+        //}
 
         if (request()->input('name') == 'fmi' && request()->input('password') == 'fmi'){
             session ([
